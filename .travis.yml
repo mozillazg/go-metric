@@ -1,0 +1,28 @@
+language: go
+go:
+  - 1.2
+  - 1.3
+  - 1.4
+  - 1.5
+  - 1.6
+  - 1.7
+  - 1.8
+  - tip
+
+sudo: false
+
+install:
+  - go get .
+  - go get ./cmd/parse_metrics
+
+script:
+  - cat example/metrics.txt |parse_metrics
+
+matrix:
+  allow_failures:
+    - go: 1.2
+    - go: 1.3
+    - go: 1.4
+    - go: 1.5
+    - go: 1.6
+    - go: tip
